@@ -1,0 +1,89 @@
+
+   {{#if isShow}}
+  <div class="alert alert-danger">
+    <p>Category is not exsits</p>
+  </div>
+  {{/if}}
+  
+<div class="card-columns">
+              {{#each list}}
+                <div class="card">
+                {{!-- <img class="card-img-top" src="/imgs/{{this.HinhURL}}" alt="this is img"> --}}
+                <img class="card-img-top" src="/imgs/1.jpg" alt="this is img">
+                <div class="card-body ProInfor">
+                    <h4 class="card-title ProName">{{this.TenSanPham}}</h4>
+                    <p class="card-text">{{this.GiaSanPham}}</p>
+                    <p class="product">Dũng</p>
+                </div>
+                <a class="btn btn-primary mb-3 ml-5" href="/products/detail/{{ this.MaSanPham }}" role="button">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <span class="btn btn-primary mb-3" onclick="addCart({{this.MaSanPham}})" role="button">
+                  <i class="fa fa-plus"></i>
+                </span>
+              </div>
+              {{/each}}
+</div>
+{{#if isList}}
+            <div class="alert alert-danger">
+               <strong>Products is not exsits</strong>
+           </div>
+        {{else}}
+
+<ul class="pagination home__products--pagination">
+  <li class="pagination__item">
+      <a href="#" class="pagination__item-link"    class="pagination__item-icon"><i class="fa fa-angle-left"></i> </a>
+  </li>
+  <li class="pagination__item ">
+      <button onclick="pagitation(1, {{cateID}})"  class="pagination__item-link " class="pagination__item-icon">1</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick="pagitation(2,{{cateID}})"  class="pagination__item-link" class="pagination__item-icon">2</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick="pagitation(3, {{cateID}})" class="pagination__item-link" class="pagination__item-icon">3</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick="pagitation(4, {{cateID}})" class="pagination__item-link" class="pagination__item-icon">4</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick="pagitation(5, {{cateID}})" class="pagination__item-link" class="pagination__item-icon">5</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick="pagitation(6, {{cateID}})" href="#" class="pagination__item-link" class="pagination__item-icon">...</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick="pagitation(7, {{cateID}})"  class="pagination__item-link" class="pagination__item-icon">14</button>
+  </li>
+  <li class="pagination__item">
+      <button onclick='pagitation(8, {{cateID}})' href="#" class="pagination__item-link" class="pagination__item-icon"><i class="fa fa-angle-right"></i> </button>
+  </li>
+</ul>
+{{/if}}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+<script>
+      
+      // bấm vào phân trang  
+        $(".pagination__item-link").click(function(){
+            alert('ll')
+            $('.pagination__item-link').removeClass('pagination__item-avtived')
+            $(this).addClass('pagination__item-avtived');
+     })
+
+
+    // Ajax phân trang
+    function pagitation(page, cateID) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           const template = JSON.parse(this.response)
+           document.getElementById("content").innerHTML = template.html;
+        }
+    };
+    xhttp.open("post", `/products/show/${cateID}?page=${page}`, true);
+    xhttp.send();
+}
+</script>

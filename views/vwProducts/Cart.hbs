@@ -1,0 +1,57 @@
+{{#if isArrProducts}}
+        <div class="alert alert-danger">
+            Bạn chưa có sản phẩm mua
+        </div>
+        <a href="/products/show" class="btn btn-primary">Tiếp tục mua sắm</a>
+        {{else}}
+            <table class="table table-striped table-dark">
+            <thead>
+            <tr style="background-color: aliceblue; color: black;">
+                <th scope="col">#</th>
+                <th scope="col">Name Products</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">NumCart</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                    {{#each arrProductsBought}}
+                            <tr>
+                                <th scope="row">{{ this.MaSanPham }}</th>
+                                <td>{{ this.TenSanPham }}</td>
+                                <td>{{ this.GiaSanPham }}</td>
+                                <td>{{ this.MoTa }}</td>
+                                {{!--  --}}
+                                <td><input id="soLuong_{{this.MaSanPham}}" type="number" value="{{ this.SoLuong }}" onchange="updateSoLuong({{ this.MaSanPham}})"></td>
+                                <td>
+                                    {{!-- <a href="/products/cart/update/{{ this.MaSanPham }}"><i style="color: aquamarine;" class="fa fa-edit"></i></a> --}}
+                                    <a href="/products/cart/delete/{{ this.MaSanPham }}"><i style="color: orange;" class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                    {{/each}}
+                    <tr style="background-color: orangered; color: black">
+                        <th scope="row"></th>
+                        <td></td>
+                            <td>{{ sumMoney }}</td>
+                        <td></td>
+                        <td>{{ sumCart }}</td>
+                        <td></td>
+                    </tr>
+            </tbody>
+            </table>
+            {{#if isLogin}}
+                <a href="/products/pay" class="btn btn-primary">Thanh Toán</a>
+                {{else}}
+                <div class="alert alert-danger">
+                    Vui lòng đăng nhập để có thể mua hàng
+                </div>
+            {{/if}}
+{{/if}}
+
+<script>
+    function updateSoLuong(maSP) {
+        const soLuong = document.getElementById(`soLuong_${maSP}`).value
+        window.location.href = `/products/cart/update?maSP=${maSP}&sl=${soLuong}`;
+    }
+</script>

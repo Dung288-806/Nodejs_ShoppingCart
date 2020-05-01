@@ -1,0 +1,36 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">CatID</th>
+      <th scope="col">CateName</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#if isShow}}
+            <div class="card">
+                <div class="card-body">
+                    Không có cate
+                </div>
+            </div>
+            {{else}}
+            
+          {{#each list}}
+            <tr>
+                <td >{{ this.MaLoaiSanPham }}</td>
+                <td>{{ this.TenSanPham}}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="javascript:;" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="javascript:;" role="button">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+          {{/each}}
+      {{/if}}
+      
+  </tbody>
+</table>
+

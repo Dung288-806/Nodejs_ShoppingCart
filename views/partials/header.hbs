@@ -1,0 +1,133 @@
+<div id="contentHeader">
+    <nav class="navbar navbar-default navbar-expand-lg mb-3 fixed-top sticky-top bg-dark">
+	<div class="navbar-header d-flex col">
+		<a class="navbar-brand" href="/">Brand<b>Name</b></a>  		
+		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
+			<span class="navbar-toggler-icon"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<!-- Collection of nav links, forms, and other content for toggling -->
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+		<ul class="nav navbar-nav">		
+			<li class="nav-item dropdown">
+				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Services <b class="caret"></b></a>
+				<ul class="dropdown-menu">					
+					<li><a href="#" class="dropdown-item">Web Design</a></li>
+					<li><a href="#" class="dropdown-item">Web Development</a></li>
+					<li><a href="#" class="dropdown-item">Graphic Design</a></li>
+					<li><a href="#" class="dropdown-item">Digital Marketing</a></li>
+				</ul>
+			</li>
+			<li class="nav-item active"><a href="#" class="nav-link">Pricing</a></li>
+			<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+			<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+		</ul>
+		<form class="navbar-form form-inline">
+			<div class="input-group search-box">								
+				<input type="text" id="search" class="form-control" placeholder="Search here...">
+				<span class="input-group-addon"></span>
+			</div>
+		</form>
+            <a href="/products/cart" class="cartContainer">
+                <i class="fa fa-cart-plus myCart">
+                    <span  class="sumCart" style="color: white;">{{sumCart}}</span>
+                </i>	 	
+            </a>
+		<ul class="nav navbar-nav navbar-right ml-auto">	
+			<li class="nav-item">
+                {{#if isLogin}}
+                    <li class="btn btn-primary"><a href="/users/logout">Logout</a></li>
+                    {{else}}
+                    <li class="header__navbar-item header__navbar-bold header__navbar-space Register btn btn-danger mr-3">Đăng ký</li>
+                    <li class="header__navbar-item header__navbar-bold Login btn btn-primary">Đăng nhập</li>
+                {{/if}}
+			</li>	
+		</ul>
+	</div>
+</nav>
+
+    <div class="modal" style="display: none;">
+        <div class="modal__overlay"></div>
+        <div class="modal__body">
+            <div class="modal__inner">
+
+                <!-- Đăng Ký -->
+
+                <div class="authen__form Register-form">
+                    <form  method="POST" action="/users/create" class="authen__form-container">
+                        <div class="authen__form-header">
+                            
+                                {{!-- <h3 id="login-user"></h3> --}}
+                                
+                                <h3 class="authen__form-heading--Register">Đăng ký</h3>
+                                <span class="authen__form-heading--btnSwitch Login-switch">Đăng nhập</span>
+                            
+                        </div>
+                        <div class="authen__form-content">
+                            <div class="authen__form--group">
+                                <input required = "required" class="authen__form-input " type="email" placeholder="Nhập email" name="Email">
+                            </div>
+							<div class="authen__form--group">
+                                <input required = "required" class="authen__form-input " type="text" placeholder="Nhập UserName" name="UserName">
+                            </div>
+                            <div class="authen__form--group">
+                                <input required = "required" class="authen__form-input" type="password" placeholder="Nhập pass" name="Pass">
+                            </div>
+                            <div class="authen__form--group">
+                                <input required = "required" class="authen__form-input" type="password" placeholder="Xác nhận pass" name="ConfPass">
+                            </div>
+                        </div>
+                        <div class="authen__form-aside">
+                            <span>Bằng việc đăng ký, bạn đã đồng ý với F8 về <a class="aside" href="#">Điều khoản dịch vụ</a>
+                                và <a href="#" class="aside">Chính sách bảo mật</a>
+                            </span>
+                        </div>
+                        <div class="authen__form-controls">
+                            <button class="btn btn-back btn-secondary">TRỞ LẠI</button>
+                            <input type="submit" class="btn btn-primary" value="Đăng Ký"></input>
+                        </div>
+                    </form>
+                    <div class="authen_form--socials">
+                        <a href="#" class="btn btn__with-icons"><i class="fa fa-facebook-square"></i>  FaceBook</a>
+                        <a href="#" class="btn btn__with-icons btn-intagram"><i class="fa fa-instagram"></i>  Instagram</a>
+                    </div>
+                </div>
+                 
+                    <!-- Đăng nhâp -->
+                <div class="authen__form Login-Form">
+                    <form method="POST" action="/users/login" class="authen__form-container">
+                        <div class="authen__form-header">
+                            <h3 class="authen__form-heading--Login">Đăng Nhập</h3>
+                            <span class="authen__form-heading--btnSwitch Register-switch">Đăng Ký</span>
+                        </div>
+                        <div class="authen__form-content">
+                            <div class="authen__form--group">
+                                <input required = "required" class="authen__form-input " type="email" placeholder="Nhập email" name="Email">
+                            </div>
+                            <div class="authen__form--group">
+                                <input required = "required" class="authen__form-input" type="password" placeholder="Nhập pass" name="Pass">
+                            </div>
+                        </div>
+                        <div class="authen__form-instruction">
+                            <a href="#" class="authen__form-instruction--forgetPass">Quên mật khẩu</a>
+                            <a href="#" class="authen__form-instruction--help">Cần trợ giúp?</a>
+                        </div>
+                        <div class="authen__form-controls">
+                            <button class="btn btn-back btn-secondary">TRỞ LẠI</button>
+                            <input type="submit" class="btn btn-primary" id="login" value="ĐĂNG NHẬP"></input>
+                        </div>
+                    </form>
+                    <div class="authen_form--socials">
+                        <a href="#" class="btn btn__with-icons"><i class="fa fa-facebook"></i>  FaceBook</a>
+                        <a href="#" class="btn btn__with-icons btn-intagram"><i class="fa fa-instagram"></i>  Instagram</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>  
+
+</div>

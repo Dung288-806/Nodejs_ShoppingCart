@@ -1,0 +1,25 @@
+<h1 class="my-4">Danh Mục</h1>
+<div class="list-group">
+
+    {{#each (listCate) }}
+        <button  class="list-group-item mt-3" id="searchCate" onclick="sendCateID({{MaLoaiSanPham}})" >{{ TenLoaiSanPham }}</button>
+    {{/each }}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+     
+ 
+function sendCateID(cateID) {
+   var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           const template = JSON.parse(this.response)
+           document.getElementById("content").innerHTML = template.html;
+        }
+    };
+    xhttp.open("post", `/products/show/${cateID}`, true);
+    xhttp.send();
+}
+</script>

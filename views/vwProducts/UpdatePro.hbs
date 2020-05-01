@@ -1,0 +1,17 @@
+<h2 class="mb-3">Update Pproduct</h2>
+<form method="POST" action="/products/update" name="formUpdate">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Name Products</label>
+    <input required value="{{ product.ProName }}" type="text" class="form-control" id="exampleFormControlInput1" name="namePro">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Price Products</label>
+    <input required value="{{ product.Price }}"  type="number" class="form-control" id="exampleFormControlInput1" name="price">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Quantity Products</label>
+    <input required value="{{ product.Quantity }}"  type="number" class="form-control" id="exampleFormControlInput1" name="quantity">
+  </div>
+   <input type="hidden" value="{{ product.ProID }}" name="proID">
+   <input type="submit" class="btn btn-primary" value="Update"></input>
+</form>
