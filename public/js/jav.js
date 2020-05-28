@@ -42,6 +42,7 @@ $(document).ready(function () {
 });
 
 
+
 function addCart(proID) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
